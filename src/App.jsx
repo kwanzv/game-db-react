@@ -3,12 +3,14 @@ import Card from "./card.jsx";
 import { useState, useEffect } from "react";
 
 function App() {
+  
   const [games, setGames] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const API_KEY = `95080834b5254574a4a989fb96a90eec`;
 
   useEffect(() => {
     loadGames();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadGames = async () => {

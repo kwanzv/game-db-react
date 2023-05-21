@@ -7,10 +7,10 @@ export default function Card({
       <div>
         <img src={background_image} alt="" />
       </div>
-      <div className="game-title">
-        <h3>{slug}</h3>
-      </div>
-      <div className="details">
+      <div className="game-details">
+        <div className="game-title">
+          <h3>{slug}</h3>
+        </div>
         <p>Release date: {released}</p>
         <p>Metacritic: {metacritic}</p>
         <p>Estimated length: {playtime} hours</p>

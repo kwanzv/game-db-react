@@ -5,17 +5,6 @@
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-
 .cards-container {
   width: 100%;
   margin-top: 2rem;
@@ -25,30 +14,52 @@
 }
 
 .card {
-  width: 310px;
+  width: 510px;
   height: auto;
   margin: 1rem;
   position: relative;
   border-radius: 15px;
   overflow: hidden;
-  background-color: gray;
+}
+
+.card:hover {
+  transform: scale(1.1);
+  cursor: pointer;
 }
 
 .card img {
   width: 100%;
-  max-height: 200px;
+  height: 100%;
+  cursor: pointer;
 }
 
-.title {
-  display: flex;
-  flex-direction: column;
+.card img:hover {
+  opacity: 0.5;
+}
+
+.game-details {
+  position: absolute;
+  display: none;
+  right: 0;
+  top: 0;
+  left: 0;
+  height: 100%;
+  text-align: center;
+  z-index: 2;
+  font-size: 1rem;
+  background-color: gray;
+}
+
+.card:hover > .game-details {
+  display: block;
 }
 
 .game-title {
-  height: auto;
-  margin: 0;
-  border-bottom: solid black 5px;
+  font-size: 2rem;
+  text-transform: uppercase;
 }
+
+//Search input CSS
 
 label {
   font-size: 1.2rem;
