@@ -25,7 +25,6 @@ a:hover {
 
 body {
   margin: 0;
-  
 }
 
 h1 {
@@ -56,4 +55,12 @@ button {
   button {
     background-color: #f9f9f9;
   }
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.tooltip {
+  @apply absolute w-auto p-2 m-2 min-w-max left-14 rounded-md shadow-lg text-white bg-gray-500 text-xs font-semibold transition-all duration-100 scale-0 origin-left;
 }
