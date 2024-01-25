@@ -2,7 +2,7 @@
   "name": "game-db-react",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://kwanzv.github.io/game-db-react/",
+  "homepage": "https://github.com/kwanzv/game-db-react",
   "type": "module",
   "scripts": {
     "dev": "vite",
