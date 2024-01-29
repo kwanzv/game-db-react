@@ -3,6 +3,10 @@ import Card from "./card.jsx";
 import { useState, useEffect } from "react";
 import Sidebar from "./Sidebar.jsx";
 
+const currentDate = new Date().toISOString().split("T")[0];
+const currentYear = new Date().getFullYear();
+console.log(currentYear);
+
 function App() {
   const [games, setGames] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -14,8 +18,17 @@ function App() {
   }, []);
 
   const loadGames = async () => {
+    console.log("I've run once");
     const response = await fetch(
-      `https://api.rawg.io/api/games?key=${API_KEY}&dates=2022-12-01,2023-04-30&platforms=18,1,7`
+      `https://api.rawg.io/api/games?key=${API_KEY}&dates=${currentDate}&platforms=187,1`
+    );
+    const data = await response.json();
+    setGames(data.results);
+  };
+
+  const example = async () => {
+    const response = await fetch(
+      `https://api.rawg.io/api/games?key=${API_KEY}&dates=${currentYear}-01-01,${currentDate}&platforms=187,1`
     );
     const data = await response.json();
     setGames(data.results);
@@ -51,7 +64,7 @@ function App() {
 
   return (
     <>
-      <Sidebar />
+      <Sidebar example={example} />
       <h1 className="text-5xl p-4 font-mono ">Games Library</h1>
       <form className="form flex justify-center gap-x-4" onSubmit={searchGames}>
         <input
