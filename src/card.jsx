@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 export default function Card({
   // eslint-disable-next-line react/prop-types
   game: {
@@ -11,7 +13,13 @@ export default function Card({
   },
 }) {
   return (
-    <div className="card" key={id}>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 2, ease: "easeInOut", staggerChildren: 0.5 }}
+      className="card"
+      key={id}
+    >
       <div>
         <img src={background_image} alt="" />
       </div>
@@ -27,6 +35,6 @@ export default function Card({
           {platforms.map((platform) => `${platform.platform.name} /`)}
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 }

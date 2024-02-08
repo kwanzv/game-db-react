@@ -5,7 +5,6 @@ import Sidebar from "./Sidebar.jsx";
 
 const currentDate = new Date().toISOString().split("T")[0];
 const currentYear = new Date().getFullYear();
-console.log(currentYear);
 
 function App() {
   const [games, setGames] = useState([]);
@@ -18,17 +17,8 @@ function App() {
   }, []);
 
   const loadGames = async () => {
-    console.log("I've run once");
     const response = await fetch(
       `https://api.rawg.io/api/games?key=${API_KEY}&dates=${currentDate}&platforms=187,1`
-    );
-    const data = await response.json();
-    setGames(data.results);
-  };
-
-  const example = async () => {
-    const response = await fetch(
-      `https://api.rawg.io/api/games?key=${API_KEY}&dates=${currentYear}-01-01,${currentDate}&platforms=187,1`
     );
     const data = await response.json();
     setGames(data.results);
@@ -39,13 +29,11 @@ function App() {
   }
 
   const searchGames = async (e) => {
-    e.preventDefault();
     const response = await fetch(
       `https://api.rawg.io/api/games/${searchTerm}?key=${API_KEY}`
     );
     const data = await response.json();
     setGames(data);
-    console.log(games);
   };
 
   function ShowGames() {
@@ -62,9 +50,29 @@ function App() {
     }
   }
 
+  const fetchGames = async () => {
+    const response = await fetch(
+      `https://api.rawg.io/api/games?key=${API_KEY}&dates=${currentYear}-01-01,${currentDate}&platforms=187,1`
+    );
+    const gamesData = await response.json();
+    setGames(gamesData.results);
+  };
+
+  const handleWorstReviewed = async () => {
+    const response = await fetch(
+      `https://api.rawg.io/api/games?key=${API_KEY}&metacritic=1,60`
+    );
+    const gamesData = await response.json();
+    setGames(gamesData.results);
+  };
+
   return (
     <>
-      <Sidebar example={example} />
+      <Sidebar
+        handleBestReviewed={loadGames}
+        handleNewlyReleased={fetchGames}
+        handleWorstReviewed={handleWorstReviewed}
+      />
       <h1 className="text-5xl p-4 font-mono ">Games Library</h1>
       <form className="form flex justify-center gap-x-4" onSubmit={searchGames}>
         <input
